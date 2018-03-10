@@ -71,7 +71,7 @@ public class pruebaIniciador extends JFrame {
 		JButton btnCreatablero = new JButton("CreaTablero");
 		btnCreatablero.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				iniciador.iniciarJuego(Byte.valueOf(txtMinas.getText()),(Densidad)cbxDensidad.getSelectedItem());
+//				iniciador.iniciarJuego(Byte.valueOf(txtMinas.getText()),(int) cbxDensidad.getSelectedItem());
 			}
 		});
 		btnCreatablero.setBounds(201, 192, 113, 23);

@@ -11,7 +11,7 @@ public class Tablero implements AccionesTablero {
 		return casillas;
 	}
 
-	public Tablero(byte filas, byte columnas) {
+	public Tablero(int filas, int columnas) {
 		super();
 		assert filas > 0 && columnas > 0 : "parametros incorrectos";
 		// TODO Auto-generated constructor stub
