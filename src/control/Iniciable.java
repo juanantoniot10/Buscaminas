@@ -16,6 +16,7 @@ interface Iniciable {
 	/**
 	 * coloca, aleatoriamente, en el tablero el numero de minas definido anteriormente
 	 * cada mina debe colocarse donde no haya ya una colocada
+	 * @return 
 	 */
 	void colocarMinas();
 	

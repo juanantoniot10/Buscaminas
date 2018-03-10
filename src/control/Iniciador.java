@@ -2,7 +2,9 @@ package control;
 
 import javax.print.attribute.standard.NumberOfDocuments;
 
+import junit.framework.Assert;
 import modelo.Tablero;
+import utiles.Utiles;
 
 public class Iniciador implements Iniciable {
 	private NumeroMinas minas;
@@ -25,12 +27,17 @@ public class Iniciador implements Iniciable {
 
 	@Override
 	public void colocarMinas() {
-		assert this.tablero != null && minas !=null : "fallo al definir el tablero y/o el numero de minas";
-		// TODO hay que hacer un sorteo y pedirle al tablero que la coloque
-		int x = 9, y = 8;
-		// no se debe acceder directamente a las propiedades de otra clase
-		// this.tablero.casillas[x][y].mina=true;
-		boolean retorno = this.tablero.colocarMina(x, y);
+ 		assert this.tablero != null && minas !=null : "fallo al definir el tablero y/o el numero de minas";
+ 		boolean salida=false;
+ 		for (int i = 0; i < minas.getValor(); i++) {
+			do {
+				int x = Utiles.crearRandom(0, this.filas-1);
+				int y = Utiles.crearRandom(0, this.columnas-1);
+				// no se debe acceder directamente a las propiedades de otra clase
+				// this.tablero.casillas[x][y].mina=true;
+				if(this.tablero.colocarMina(x, y))salida=true;
+			} while (salida==false);
+		}
 	}
 
 	public void iniciarJuego(NumeroMinas minas, Densidad densidad) {
@@ -40,6 +47,7 @@ public class Iniciador implements Iniciable {
 		crearTablero();
 		colocarMinas();
 		this.tablero.calcularMinasAlrededor();
+		
 	}
 
 	

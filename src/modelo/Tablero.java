@@ -14,7 +14,6 @@ public class Tablero implements AccionesTablero {
 	public Tablero(int filas, int columnas) {
 		super();
 		assert filas > 0 && columnas > 0 : "parametros incorrectos";
-		// TODO Auto-generated constructor stub
 		casillas = new Casilla[filas][columnas];
 		for (int i = 0; i < casillas.length; i++) {
 			for (int j = 0; j < casillas[i].length; j++) {
@@ -25,8 +24,6 @@ public class Tablero implements AccionesTablero {
 
 	@Override
 	public void calcularMinasAlrededor() {
-		// TODO recorrer el panel donde hay mina y colocar un incremento
-		// de una mina alrededor de ella
 		for (int i = 0; i < casillas.length; i++) {
 			for (int j = 0; j < casillas[i].length; j++) {
 				if (casillas[i][j].isMina()) {
@@ -60,12 +57,12 @@ public class Tablero implements AccionesTablero {
 		return new Coordenada(posX, posY);
 	}
 
-	public boolean isInToLimits(Coordenada pos) {
-		return isInside(pos, casillas.length) && isInside(pos, casillas[0].length);
+	public boolean isInToLimits(Coordenada coordenada) {
+		return isInside(coordenada.getPosX(), casillas.length) && isInside(coordenada.getPosY(), casillas[0].length);
 	}
 
-	public boolean isInside(Coordenada pos, int upperLimitRow) {
-		return pos.getPosX() >= 0 && pos.getPosX() <= upperLimitRow;
+	public boolean isInside(int posicion, int limite) {
+		return posicion > 0 && posicion < limite;
 	}
 
 	public boolean colocarMina(int x, int y) {
