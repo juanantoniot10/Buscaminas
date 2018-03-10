@@ -44,7 +44,7 @@ public class ListenerJuego implements ActionListener{
 
 	private int obtenerPosicionY(ActionEvent e) {
 		int posicionEspacio=String.valueOf(((JButton)e.getSource()).getName()).indexOf(' ');
-		return Integer.valueOf(String.valueOf(((JButton)e.getSource()).getName()).substring(0,posicionEspacio));
+		return Integer.valueOf(String.valueOf(((JButton)e.getSource()).getName()).substring(posicionEspacio));
 	}
 
 	public void setIniciador(Iniciador iniciador) {
