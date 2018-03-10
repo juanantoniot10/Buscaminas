@@ -12,7 +12,6 @@ public class PuenteVistaControl extends Principal{
 	Botonera botonera;
 	ListenerInicio listenerInicio = new ListenerInicio(this.pantallaInicial,this.iniciador,this.botonera);
 	
-	
 	public PuenteVistaControl() {
 		super();
 		this.pantallaInicial.getBtnJugar().addActionListener(listenerInicio);
