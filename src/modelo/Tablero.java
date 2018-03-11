@@ -27,6 +27,7 @@ public class Tablero implements AccionesTablero {
 		for (int i = 0; i < casillas.length; i++) {
 			for (int j = 0; j < casillas[i].length; j++) {
 				if (casillas[i][j].isMina()) {
+					casillas[i][j].setAlrededor((byte) (casillas[i][j].getAlrededor()-1));
 					// VIVA el hardcode
 					for (int j2 = 0; j2 < Utiles.OCHO; j2++) {
 						Coordenada alrededor = crearCoordenadaAlrededor(i, j, j2);
@@ -72,15 +73,28 @@ public class Tablero implements AccionesTablero {
 		return casillas[x][y].colocaMina();
 	}
 
-	public boolean desvelarCasilla(Casilla casilla) {
-		// TODO metodo reecursivo que a partir de un casilla desvelada (hay que
-		// saber
-		// cual es dentro del tablero) develada todas las de alrededor y
-		// sucesivas que tengan
-		// un valor de 0 minas alrededor
-		
-		return false;
-	}
+	
+	
+	
+//	public boolean desvelarCasilla(Casilla casilla) {
+//		assert casilla.isVelada()&&!casilla.isMina()&&!casilla.isMarcada();
+//		casilla.setVelada(false);
+//		Coordenada lugar = new Coordenada(posX, posY);
+//		for (int i = 0; i < Utiles.OCHO; i++) {
+//			if(!casilla.isVelada()&&!casilla.isMina()&& !casilla.isMarcada()&& (casilla.getAlrededor()==0)){
+//				lugar=crearCoordenadaAlrededor(lugar.getPosX(), lugar.getPosY(), i);
+//				desvelarCasilla(this.getCasillas()[lugar.getPosX()][lugar.getPosY()], lugar.getPosX(), lugar.getPosY());
+//			}
+//		}
+//		
+//		
+//		// TODO metodo reecursivo que a partir de un casilla desvelada (hay que
+//		// saber
+//		// cual es dentro del tablero) develada todas las de alrededor y
+//		// sucesivas que tengan
+//		// un valor de 0 minas alrededor
+//		return false;
+//	}
 
 	@Override
 	public void desvelarContigua(Coordenada lugar) {

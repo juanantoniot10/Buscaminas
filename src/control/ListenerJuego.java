@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import modelo.Casilla;
+import modelo.Coordenada;
 import vista.Botonera;
 
 public class ListenerJuego implements ActionListener{
@@ -32,7 +33,7 @@ public class ListenerJuego implements ActionListener{
 				descubrirUnaCasilla(e);
 			}
 			else {
-				
+				this.iniciador.getTablero().desvelarContigua(new Coordenada(obtenerPosicionX(e),obtenerPosicionY(e)));
 			}
 			actualizarBotonera();
 		}
