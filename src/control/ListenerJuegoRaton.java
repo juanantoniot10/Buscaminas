@@ -29,19 +29,18 @@ public class ListenerJuegoRaton extends MouseAdapter{
 		public void mouseClicked(MouseEvent e) {
 			int boton=e.getButton();
 			switch (boton){
-			case 1:if(iniciador.getTablero().getCasillas()[obtenerPosicionX(e)][obtenerPosicionY(e)].isVelada()) {
-						Casilla casilla= this.iniciador.getTablero().getCasillas()[obtenerPosicionX(e)][obtenerPosicionY(e)];
-						if(casilla.isMina()) {
-							finalizarPartida();
-						}
-						else if (casilla.getAlrededor()!=0){
-							descubrirUnaCasilla(e);
-						}
-						else {
-							this.iniciador.getTablero().desvelarContigua(new Coordenada(obtenerPosicionX(e),obtenerPosicionY(e)));
-						}
-					}	
-						actualizarBotonera();
+			case 1:
+				Casilla casilla= this.iniciador.getTablero().getCasillas()[obtenerPosicionX(e)][obtenerPosicionY(e)];
+				if(casilla.isMina()) {
+					finalizarPartida();
+				}
+				if (casilla.getAlrededor()!=0&&casilla.isVelada()){
+					descubrirUnaCasilla(e);
+				}
+				else {
+					this.iniciador.getTablero().desvelarContigua(new Coordenada(obtenerPosicionX(e),obtenerPosicionY(e)));
+				}
+				actualizarBotonera();
 			break;
 			case 3:
 				this.iniciador.getTablero().getCasillas()[obtenerPosicionX(e)][obtenerPosicionY(e)].setMarcada(!this.iniciador.getTablero().getCasillas()[obtenerPosicionX(e)][obtenerPosicionY(e)].isMarcada());

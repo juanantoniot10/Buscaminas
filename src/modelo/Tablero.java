@@ -110,8 +110,7 @@ public class Tablero implements AccionesTablero {
 						&& isVelada(posicion)
 						&& !isMarcada(posicion)) {
 					setVelada(lugar);
-					if (getAlrededor(lugar) == 0)
-						desvelarContigua(posicion);
+					desvelarContigua(posicion);
 				}
 			}
 		}
