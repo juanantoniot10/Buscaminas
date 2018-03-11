@@ -15,7 +15,7 @@ public class ListenerInicio implements ActionListener {
 	PantallaInicial pantallaInicial;
 	Iniciador iniciador;
 	Botonera botonera;
-	ListenerJuego listenerJuego;
+	ListenerJuegoRaton listenerJuegoRaton;
 	
 	public ListenerInicio(PantallaInicial pantallaInicial, Iniciador iniciador,Botonera botonera) {
 		this.pantallaInicial = pantallaInicial;
@@ -31,10 +31,10 @@ public class ListenerInicio implements ActionListener {
 		padre.remove(pantallaInicial);
 		padre.add(this.botonera);
 		SwingUtilities.updateComponentTreeUI(padre);
-		this.listenerJuego= new ListenerJuego(this.botonera,this.iniciador);
+		this.listenerJuegoRaton= new ListenerJuegoRaton(this.botonera,this.iniciador);
 		for (int i = 0; i < this.iniciador.getTablero().getCasillas().length; i++) {
 			for (int j = 0; j < this.iniciador.getTablero().getCasillas()[i].length; j++) {
-				botonera.botones[i][j].addActionListener(listenerJuego);
+				botonera.botones[i][j].addMouseListener(listenerJuegoRaton);
 			}
 		}
 	}
