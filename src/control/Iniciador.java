@@ -14,8 +14,8 @@ public class Iniciador implements Iniciable {
 
 	@Override
 	public void establecerDimensionTablero() {
-		this.filas = (int)this.getMinas().getValor()/this.getDensidad().getValor() * 10;
-		this.columnas = (int)this.getMinas().getValor()/this.getDensidad().getValor() * 10;
+		this.filas = (int)Math.sqrt((this.getMinas().getValor()/this.getDensidad().getValor())*100);
+		this.columnas = (int)Math.sqrt((this.getMinas().getValor()/this.getDensidad().getValor())*100);
 	}
 
 
