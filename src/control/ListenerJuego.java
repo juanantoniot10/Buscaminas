@@ -1,5 +1,6 @@
 package control;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,16 +23,44 @@ public class ListenerJuego implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		this.iniciador.getTablero().desvelarCasilla(this.iniciador.getTablero().getCasillas()[obtenerPosicionX(e)][obtenerPosicionY(e)]);
-		actualizarBotonera();
+		if(iniciador.getTablero().getCasillas()[obtenerPosicionX(e)][obtenerPosicionY(e)].isVelada()) {
+			Casilla casilla= this.iniciador.getTablero().getCasillas()[obtenerPosicionX(e)][obtenerPosicionY(e)];
+			if(casilla.isMina()) {
+				finalizarPartida();
+			}
+			else if (casilla.getAlrededor()!=0){
+				descubrirUnaCasilla(e);
+			}
+			else {
+				
+			}
+			actualizarBotonera();
+		}
+		
 	}
 
 	
+	private void descubrirUnaCasilla(ActionEvent e) {
+		this.botonera.botones[obtenerPosicionX(e)][obtenerPosicionY(e)].setText("a");
+		this.botonera.botones[obtenerPosicionX(e)][obtenerPosicionY(e)].setBackground(new Color(241, 241, 241));
+		this.iniciador.getTablero().getCasillas()[obtenerPosicionX(e)][obtenerPosicionY(e)].setVelada(false);
+	}
+
+	private void finalizarPartida() {
+		for (int i = 0; i < this.iniciador.getTablero().getCasillas().length; i++) {
+			for (int j = 0; j < iniciador.getTablero().getCasillas()[i].length; j++) {
+				this.botonera.botones[i][j].setText(String.valueOf(iniciador.getTablero().getCasillas()[i][j].getAlrededor()));
+				this.iniciador.getTablero().getCasillas()[i][j].setVelada(false);
+			}
+		}
+	}
+
 	private void actualizarBotonera() {
 		for (int i = 0; i < this.iniciador.getTablero().getCasillas().length; i++) {
 			for (int j = 0; j < iniciador.getTablero().getCasillas()[i].length; j++) {
 				if (!iniciador.getTablero().getCasillas()[i][j].isVelada()) {
 					this.botonera.botones[i][j].setText(String.valueOf(iniciador.getTablero().getCasillas()[i][j].getAlrededor()));
+					this.botonera.botones[i][j].setBackground(new Color(241, 241, 241));
 				}
 			}
 		}
@@ -44,7 +73,7 @@ public class ListenerJuego implements ActionListener{
 
 	private int obtenerPosicionY(ActionEvent e) {
 		int posicionEspacio=String.valueOf(((JButton)e.getSource()).getName()).indexOf(' ');
-		return Integer.valueOf(String.valueOf(((JButton)e.getSource()).getName()).substring(posicionEspacio));
+		return Integer.valueOf(String.valueOf(((JButton)e.getSource()).getName()).substring(posicionEspacio+1));
 	}
 
 	public void setIniciador(Iniciador iniciador) {

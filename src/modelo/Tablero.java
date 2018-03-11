@@ -78,6 +78,7 @@ public class Tablero implements AccionesTablero {
 		// cual es dentro del tablero) develada todas las de alrededor y
 		// sucesivas que tengan
 		// un valor de 0 minas alrededor
+		
 		return false;
 	}
 

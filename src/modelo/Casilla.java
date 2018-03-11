@@ -6,21 +6,7 @@ public class Casilla {
 	private boolean velada = true;
 	private boolean marcada = false;
 
-	public boolean isVelada() {
-		return velada;
-	}
 
-	public void setVelada(boolean velada) {
-		this.velada = velada;
-	}
-
-	public boolean isMarcada() {
-		return marcada;
-	}
-
-	public void setMarcada(boolean marcada) {
-		this.marcada = marcada;
-	}
 
 	/**
 	 * si en la casilla hay una mina retorna false si en la casilla no hay mina
@@ -37,6 +23,31 @@ public class Casilla {
 		return retorno;
 	}
 
+
+
+	public boolean marcaCasilla() {
+		if (this.isVelada()) {
+			this.setMarcada(!this.isMarcada());
+			marcada = true;
+		}
+		return marcada;
+	}
+	public boolean isVelada() {
+		return velada;
+	}
+
+	public void setVelada(boolean velada) {
+		this.velada = velada;
+	}
+
+	public boolean isMarcada() {
+		return marcada;
+	}
+
+	public void setMarcada(boolean marcada) {
+		this.marcada = marcada;
+	}
+	
 	public boolean isMina() {
 		return mina;
 	}
@@ -52,13 +63,4 @@ public class Casilla {
 	public void setAlrededor(byte alrededor) {
 		this.alrededor = alrededor;
 	}
-
-	public boolean marcaCasilla() {
-		if (this.isVelada()) {
-			this.setMarcada(!this.isMarcada());
-			marcada = true;
-		}
-		return marcada;
-	}
-
 }
