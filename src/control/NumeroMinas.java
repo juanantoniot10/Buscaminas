@@ -1,7 +1,7 @@
 package control;
 
 public enum NumeroMinas {
-	diez(10), veinte(20), treinta(30);
+	treinta(10), sesenta(60), cien(100);
 	private int valor;
 
 	private NumeroMinas(int valor) {

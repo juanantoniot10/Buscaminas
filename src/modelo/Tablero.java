@@ -63,7 +63,7 @@ public class Tablero implements AccionesTablero {
 	}
 
 	public boolean isInside(int posicion, int limite) {
-		return posicion > 0 && posicion < limite;
+		return posicion >= 0 && posicion < limite;
 	}
 
 	public boolean colocarMina(int x, int y) {
