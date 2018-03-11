@@ -30,27 +30,28 @@ public class ListenerJuegoRaton extends MouseAdapter{
 			int boton=e.getButton();
 			switch (boton){
 			case 1:if(iniciador.getTablero().getCasillas()[obtenerPosicionX(e)][obtenerPosicionY(e)].isVelada()) {
-				Casilla casilla= this.iniciador.getTablero().getCasillas()[obtenerPosicionX(e)][obtenerPosicionY(e)];
-				if(casilla.isMina()) {
-					finalizarPartida();
-				}
-				else if (casilla.getAlrededor()!=0){
-					descubrirUnaCasilla(e);
-				}
-				else {
-					this.iniciador.getTablero().desvelarContigua(new Coordenada(obtenerPosicionX(e),obtenerPosicionY(e)));
-				}
+						Casilla casilla= this.iniciador.getTablero().getCasillas()[obtenerPosicionX(e)][obtenerPosicionY(e)];
+						if(casilla.isMina()) {
+							finalizarPartida();
+						}
+						else if (casilla.getAlrededor()!=0){
+							descubrirUnaCasilla(e);
+						}
+						else {
+							this.iniciador.getTablero().desvelarContigua(new Coordenada(obtenerPosicionX(e),obtenerPosicionY(e)));
+						}
+					}	
+						actualizarBotonera();
+			break;
+			case 3:
+				this.iniciador.getTablero().getCasillas()[obtenerPosicionX(e)][obtenerPosicionY(e)].setMarcada(!this.iniciador.getTablero().getCasillas()[obtenerPosicionX(e)][obtenerPosicionY(e)].isMarcada());
 				actualizarBotonera();
-			};break;
-			case 2:System.out.println("soy el boton central");break;
-			case 3:System.out.println("soy el boton dcha");break;
-			default:System.out.println("soy el boton no lo tengo claro");break;
+			break;	
 			}
 		}
 		
 		
 	private void descubrirUnaCasilla(MouseEvent e) {
-		this.botonera.botones[obtenerPosicionX(e)][obtenerPosicionY(e)].setText("a");
 		this.botonera.botones[obtenerPosicionX(e)][obtenerPosicionY(e)].setBackground(new Color(241, 241, 241));
 		this.iniciador.getTablero().getCasillas()[obtenerPosicionX(e)][obtenerPosicionY(e)].setVelada(false);
 	}
@@ -71,6 +72,10 @@ public class ListenerJuegoRaton extends MouseAdapter{
 					this.botonera.botones[i][j].setText(String.valueOf(iniciador.getTablero().getCasillas()[i][j].getAlrededor()));
 					this.botonera.botones[i][j].setBackground(new Color(241, 241, 241));
 				}
+				else if (iniciador.getTablero().getCasillas()[i][j].isMarcada()) {
+					this.botonera.botones[i][j].setText("x");
+				}
+				else this.botonera.botones[i][j].setText(" ");
 			}
 		}
 	}
